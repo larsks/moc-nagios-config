@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker pull larsks/nagios-ci
+
+script:
+  - >-
+    docker run -v $PWD:/nagios_config --rm
+    larsks/nagios-ci nagios -v /etc/nagios/nagios.cfg
